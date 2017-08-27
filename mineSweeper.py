@@ -1,5 +1,12 @@
 import numpy as np
 
+# Ensure Python 2 and 3 Compatibility
+try:
+    input = raw_input
+    range = xrange
+except NameError:
+    pass
+
 '''f=open("input.txt")
 
 temp=[]
@@ -10,7 +17,7 @@ for line in f:
 
     temp.append(data)
 
-#print temp
+#print(temp)
 f.close()'''
 
 class Grid():
@@ -33,8 +40,8 @@ class Grid():
         n=self.n
         x=self.x
 
-        print "Grid Size:", m, "x", n
-        print "Mines:", x'''
+        print("Grid Size:", m, "x", n)
+        print("Mines:", x''')
 
     def setGrid(self): #Creates the grids and places mines
         m=self.m
@@ -43,15 +50,15 @@ class Grid():
         grid=np.zeros((m, n), int, 'C') #Grid that stores mines position
         grid2=np.zeros((m, n), int, 'C') #Grid shown to player
 
-        for i in xrange(0, m): #Fills grid2 with -1 to indicate a position not opened
-            for j in xrange(0, n):
+        for i in range(0, m): #Fills grid2 with -1 to indicate a position not opened
+            for j in range(0, n):
                 grid2[i, j]=-1
 
         np.random.seed()
         l=np.random.randint(m)
         c=np.random.randint(n)
 
-        for i in xrange(0, x): #Randomly places mines on grid
+        for i in range(0, x): #Randomly places mines on grid
             if grid[l, c]==1:
                 while grid[l, c]==1:
                     l=np.random.randint(m)
@@ -64,8 +71,8 @@ class Grid():
 
         self.grid=grid
         self.grid2=grid2
-        #print grid
-        print grid2
+        #print(grid)
+        print(grid2)
 
     def mineScan(self):
         m=self.m
@@ -73,13 +80,13 @@ class Grid():
         grid=self.grid
         grid2=self.grid2
 
-        in1=raw_input("Select line to open:")
+        in1=input("Select line to open:")
         l=int(in1)
 
         '''if l<0 or l>m: #Checks if l is bigger than m
             while'''
 
-        in2=raw_input("Select column to open:")
+        in2=input("Select column to open:")
         c=int(in2)
 
         '''if c<n: #Checks if c is smaller than n
@@ -89,9 +96,9 @@ class Grid():
             grid2[l, c]=9 #Nine indicates a mine, because its an impossible value for counter
             self.grid2[l, c]=grid2[l, c]
 
-            print "BOOM!"
-            print "Game Over"
-            print grid2
+            print("BOOM!")
+            print("Game Over")
+            print(grid2)
             return -1
 
         else:
@@ -100,16 +107,16 @@ class Grid():
             grid2[l, c]=counter
             self.grid2[l, c]=grid2[l, c]
 
-            print grid2
+            print(grid2)
             return counter
 
     '''def run(self): #Check later!!!
         pass'''
 
 def tao(): #Under work!!!
-    in1=raw_input("Enter number of lines:")
-    in2=raw_input("Enter number of columns:")
-    in3=raw_input("Enter number of mines:")
+    in1=input("Enter number of lines:")
+    in2=input("Enter number of columns:")
+    in3=input("Enter number of mines:")
 
     m=int(in1)
     n=int(in2)
@@ -117,6 +124,5 @@ def tao(): #Under work!!!
 
     grid=Grid(m, n, x)
     grid.setGrid()
-
 
 tao=tao()
