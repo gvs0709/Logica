@@ -1,6 +1,6 @@
 import numpy as np
 
-f=open("input.txt")
+'''f=open("input.txt")
 
 temp=[]
 
@@ -11,12 +11,22 @@ for line in f:
     temp.append(data)
 
 #print temp
-f.close()
+f.close()'''
 
 class Grid():
-    m=temp[0] #Number of lines
-    n=temp[1] #Number of columns
-    x=temp[2] #Number of mines
+    def __init__(self, m, n, x): #Sets the grid size (m, n) and the number number of mines
+        self.m=m #Number of lines
+        self.n=n #Number of columns
+        self.x=x #Number of mines
+        self.grid=[]
+        self.grid2=[]
+
+    '''def getSize(self): #Returns number of rows, columns and mines
+        m=self.m
+        n=self.n
+        x=self.x
+
+        return (m, n, x)
 
     def gridSize(self): #Shows the grid size and the number of mines
         m=self.m
@@ -24,7 +34,7 @@ class Grid():
         x=self.x
 
         print "Grid Size:", m, "x", n
-        print "Mines:", x
+        print "Mines:", x'''
 
     def setGrid(self): #Creates the grids and places mines
         m=self.m
@@ -52,12 +62,60 @@ class Grid():
             else:
                 grid[l, c]=1
 
-        print grid
-        #print grid2
+        self.grid=grid
+        self.grid2=grid2
+        #print grid
+        print grid2
 
-def tao():
-    grid=Grid()
-    grid.gridSize()
+    def mineScan(self):
+        m=self.m
+        n=self.n
+        grid=self.grid
+        grid2=self.grid2
+
+        in1=raw_input("Select line to open:")
+        l=int(in1)
+
+        '''if l<0 or l>m: #Checks if l is bigger than m
+            while'''
+
+        in2=raw_input("Select column to open:")
+        c=int(in2)
+
+        '''if c<n: #Checks if c is smaller than n
+            pass'''
+
+        if grid[l, c]==1:
+            grid2[l, c]=9 #Nine indicates a mine, because its an impossible value for counter
+            self.grid2[l, c]=grid2[l, c]
+
+            print "BOOM!"
+            print "Game Over"
+            print grid2
+            return -1
+
+        else:
+            counter=0
+            counter=grid[(l-1), (c-1)]+grid[(l-1), c]+grid[(l-1), (c+1)]+grid[l, (c-1)]+grid[l, (c+1)]+grid[(l+1), (c-1)]+grid[(l+1), c]+grid[(l+1), (c+1)]
+            grid2[l, c]=counter
+            self.grid2[l, c]=grid2[l, c]
+
+            print grid2
+            return counter
+
+    '''def run(self): #Check later!!!
+        pass'''
+
+def tao(): #Under work!!!
+    in1=raw_input("Enter number of lines:")
+    in2=raw_input("Enter number of columns:")
+    in3=raw_input("Enter number of mines:")
+
+    m=int(in1)
+    n=int(in2)
+    x=int(in3)
+
+    grid=Grid(m, n, x)
     grid.setGrid()
 
 
