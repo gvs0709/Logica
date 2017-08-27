@@ -17,7 +17,7 @@ for line in f:
 
     temp.append(data)
 
-#print temp
+#print(temp)
 f.close()'''
 
 class Grid():
@@ -40,8 +40,8 @@ class Grid():
         n=self.n
         x=self.x
 
-        print "Grid Size:", m, "x", n
-        print "Mines:", x'''
+        print("Grid Size:", m, "x", n)
+        print("Mines:", x''')
 
     def setGrid(self): #Creates the grids and places mines
         m=self.m
@@ -71,7 +71,7 @@ class Grid():
 
         self.grid=grid
         self.grid2=grid2
-        #print grid
+        #print(grid)
         print(grid2)
 
     def mineScan(self):
