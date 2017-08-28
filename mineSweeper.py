@@ -132,8 +132,8 @@ class Grid():
 def tau(m, n, x):
     prop=[] #List of all possible mined tiles
 
-    for i in range(1, m+1): #Generate all possible mined tiles
-        for j in range(1, n+1):
+    for i in range(0, m): #Generate all possible mined tiles
+        for j in range(0, n):
             tile=(i, j) #Create tile as tuple
             prop.append(tile)
 
